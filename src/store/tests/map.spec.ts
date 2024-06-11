@@ -1,7 +1,19 @@
-import { test, expect, describe } from "vitest";
+import { test, expect, describe, beforeEach } from "vitest";
+import { useMapStore } from "../map";
+import { createPinia, setActivePinia } from "pinia";
 
 describe("map", () => {
-  test("map", () => {
-    expect(1).toBe(1);
+  beforeEach(() => {
+    setActivePinia(createPinia());
+  });
+  test("should", () => {
+    const { map } = useMapStore();
+    expect(map).toEqual([
+      [1, 1, 1, 1, 1],
+      [1, 2, 2, 2, 1],
+      [1, 2, 2, 2, 1],
+      [1, 2, 2, 2, 1],
+      [1, 1, 1, 1, 1],
+    ]);
   });
 });
