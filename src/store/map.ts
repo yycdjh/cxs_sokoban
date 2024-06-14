@@ -5,6 +5,13 @@ export enum MapTile {
   FLOOR = 2,
 }
 
+type Map = MapTile[][];
+
+interface Position {
+  x: number;
+  y: number;
+}
+
 export const useMapStore = defineStore("map", () => {
   const map = [
     [1, 1, 1, 1, 1],
@@ -13,7 +20,18 @@ export const useMapStore = defineStore("map", () => {
     [1, 2, 2, 2, 1],
     [1, 1, 1, 1, 1],
   ];
+
+  function setupMap(newMap: Map) {
+    map.splice(0, map.length, ...newMap);
+  }
+
+  function isWall(position: Position) {
+    return map[position.y][position.x] === MapTile.WALL;
+  }
+
   return {
     map,
+    setupMap,
+    isWall,
   };
 });
