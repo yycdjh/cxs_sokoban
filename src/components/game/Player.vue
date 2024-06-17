@@ -6,10 +6,13 @@
 
 <script setup lang="ts">
 import keeperImg from "../../assets/keeper.png";
-import { useMove, usePosition } from "./player";
+import { usePosition } from "../../composables/usePosition";
+import { usePlayerStore } from "../../store/player";
+import { useMove } from "./player";
 
 useMove();
-const { position } = usePosition();
+const { player } = usePlayerStore();
+const { position } = usePosition(player);
 </script>
 
 <style scoped></style>
