@@ -7,13 +7,15 @@ describe("map", () => {
     setActivePinia(createPinia());
   });
   test("should", () => {
-    const { map } = useMapStore();
-    expect(map).toEqual([
-      [1, 1, 1, 1, 1],
-      [1, 2, 2, 2, 1],
-      [1, 2, 2, 2, 1],
-      [1, 2, 2, 2, 1],
-      [1, 1, 1, 1, 1],
-    ]);
+    const { map, setupMap } = useMapStore();
+    const newMap = [
+      [1, 1, 1],
+      [1, 1, 1],
+      [1, 1, 1],
+    ];
+
+    setupMap(newMap);
+
+    expect(map).toEqual(newMap);
   });
 });
