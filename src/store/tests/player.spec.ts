@@ -181,4 +181,75 @@ describe("player", () => {
       expect(cargo.y).toBe(3);
     });
   });
+
+  describe("should not push cargo when the cargo hits wall", () => {
+    beforeEach(() => {
+      const { setupMap } = useMapStore();
+      const map = [
+        [1, 1, 1, 1, 1],
+        [1, 2, 2, 2, 1],
+        [1, 2, 2, 2, 1],
+        [1, 2, 2, 2, 1],
+        [1, 1, 1, 1, 1],
+      ];
+      setupMap(map);
+    });
+    test("player push cargo hits left wall", () => {
+      const { createCargo, addCargo } = useCaogoStore();
+      const cargo = createCargo({ x: 1, y: 1 });
+      addCargo(cargo);
+
+      const { player, movePlayerToLeft } = usePlayerStore();
+      player.x = 2;
+      player.y = 1;
+
+      movePlayerToLeft();
+
+      expect(player.x).toBe(2);
+      expect(cargo.x).toBe(1);
+    });
+
+    test("player push cargo hits right wall", () => {
+      const { createCargo, addCargo } = useCaogoStore();
+      const cargo = createCargo({ x: 3, y: 1 });
+      addCargo(cargo);
+
+      const { player, movePlayerToRight } = usePlayerStore();
+      player.x = 2;
+      player.y = 1;
+
+      movePlayerToRight();
+
+      expect(player.x).toBe(2);
+      expect(cargo.x).toBe(3);
+    });
+    test("player push cargo hits up wall", () => {
+      const { createCargo, addCargo } = useCaogoStore();
+      const cargo = createCargo({ x: 1, y: 1 });
+      addCargo(cargo);
+
+      const { player, movePlayerToUp } = usePlayerStore();
+      player.x = 1;
+      player.y = 2;
+
+      movePlayerToUp();
+
+      expect(player.y).toBe(2);
+      expect(cargo.y).toBe(1);
+    });
+    test("player push cargo hits down wall", () => {
+      const { createCargo, addCargo } = useCaogoStore();
+      const cargo = createCargo({ x: 1, y: 3 });
+      addCargo(cargo);
+
+      const { player, movePlayerToDown } = usePlayerStore();
+      player.x = 1;
+      player.y = 2;
+
+      movePlayerToDown();
+
+      expect(player.y).toBe(2);
+      expect(cargo.y).toBe(3);
+    });
+  });
 });

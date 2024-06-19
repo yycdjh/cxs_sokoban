@@ -17,12 +17,21 @@ export const usePlayerStore = defineStore("player", () => {
     };
     if (isWall(nextPosition)) return;
 
-    const { findCargo } = useCaogoStore();
+    const { findCargo, moveCargo } = useCaogoStore();
     const cargo = findCargo(nextPosition);
 
     if (cargo) {
-      cargo.x += dx;
-      cargo.y += dy;
+      // const position = {
+      //   x: cargo.x + dx,
+      //   y: cargo.y + dy,
+      // };
+      // if (isWall(position)) return;
+      // if (findCargo(position)) return;
+
+      // cargo.x += dx;
+      // cargo.y += dy;
+      const isMoveCargo = moveCargo(cargo, dx, dy);
+      if (!isMoveCargo) return;
     }
 
     player.x += dx;
