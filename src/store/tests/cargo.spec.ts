@@ -1,5 +1,5 @@
 import { test, describe, expect, beforeEach } from "vitest";
-import { useCaogoStore } from "../cargo";
+import { useCargoStore } from "../cargo";
 import { setActivePinia, createPinia } from "pinia";
 
 describe("cargo", () => {
@@ -7,7 +7,7 @@ describe("cargo", () => {
     setActivePinia(createPinia());
   });
   test("should add a cargo", () => {
-    const { addCargo, createCargo, cargos } = useCaogoStore();
+    const { addCargo, createCargo, cargos } = useCargoStore();
 
     addCargo(createCargo({ x: 2, y: 1 }));
 

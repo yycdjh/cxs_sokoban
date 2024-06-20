@@ -8,7 +8,7 @@ interface Cargo {
   y: number;
 }
 
-export const useCaogoStore = defineStore("cargo", () => {
+export const useCargoStore = defineStore("cargo", () => {
   const cargos: Cargo[] = reactive([]);
 
   function createCargo({ x, y }: { x: number; y: number }): Cargo {

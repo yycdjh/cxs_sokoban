@@ -2,7 +2,7 @@ import { test, expect, describe, beforeEach } from "vitest";
 import { usePlayerStore } from "../player";
 import { createPinia, setActivePinia } from "pinia";
 import { useMapStore } from "../map";
-import { useCaogoStore } from "../cargo";
+import { useCargoStore } from "../cargo";
 
 describe("player", () => {
   beforeEach(() => {
@@ -125,7 +125,7 @@ describe("player", () => {
       setupMap(map);
     });
     test("should push a cargo to  left", () => {
-      const { createCargo, addCargo } = useCaogoStore();
+      const { createCargo, addCargo } = useCargoStore();
       const cargo = createCargo({ x: 2, y: 1 });
       addCargo(cargo);
 
@@ -139,7 +139,7 @@ describe("player", () => {
       expect(cargo.x).toBe(1);
     });
     test("should push a cargo to  right", () => {
-      const { createCargo, addCargo } = useCaogoStore();
+      const { createCargo, addCargo } = useCargoStore();
       const cargo = createCargo({ x: 2, y: 1 });
       addCargo(cargo);
 
@@ -153,7 +153,7 @@ describe("player", () => {
       expect(cargo.x).toBe(3);
     });
     test("should push a cargo to  up", () => {
-      const { createCargo, addCargo } = useCaogoStore();
+      const { createCargo, addCargo } = useCargoStore();
       const cargo = createCargo({ x: 1, y: 2 });
       addCargo(cargo);
 
@@ -167,7 +167,7 @@ describe("player", () => {
       expect(cargo.y).toBe(1);
     });
     test("should push a cargo to  dowm", () => {
-      const { createCargo, addCargo } = useCaogoStore();
+      const { createCargo, addCargo } = useCargoStore();
       const cargo = createCargo({ x: 1, y: 2 });
       addCargo(cargo);
 
@@ -195,7 +195,7 @@ describe("player", () => {
       setupMap(map);
     });
     test("player push cargo hits left wall", () => {
-      const { createCargo, addCargo } = useCaogoStore();
+      const { createCargo, addCargo } = useCargoStore();
       const cargo = createCargo({ x: 1, y: 1 });
       addCargo(cargo);
 
@@ -210,7 +210,7 @@ describe("player", () => {
     });
 
     test("player push cargo hits right wall", () => {
-      const { createCargo, addCargo } = useCaogoStore();
+      const { createCargo, addCargo } = useCargoStore();
       const cargo = createCargo({ x: 3, y: 1 });
       addCargo(cargo);
 
@@ -224,7 +224,7 @@ describe("player", () => {
       expect(cargo.x).toBe(3);
     });
     test("player push cargo hits up wall", () => {
-      const { createCargo, addCargo } = useCaogoStore();
+      const { createCargo, addCargo } = useCargoStore();
       const cargo = createCargo({ x: 1, y: 1 });
       addCargo(cargo);
 
@@ -238,7 +238,7 @@ describe("player", () => {
       expect(cargo.y).toBe(1);
     });
     test("player push cargo hits down wall", () => {
-      const { createCargo, addCargo } = useCaogoStore();
+      const { createCargo, addCargo } = useCargoStore();
       const cargo = createCargo({ x: 1, y: 3 });
       addCargo(cargo);
 

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 import { useMapStore } from "./map";
-import { useCaogoStore } from "./cargo";
+import { useCargoStore } from "./cargo";
 
 export const usePlayerStore = defineStore("player", () => {
   const { isWall } = useMapStore();
@@ -17,7 +17,7 @@ export const usePlayerStore = defineStore("player", () => {
     };
     if (isWall(nextPosition)) return;
 
-    const { findCargo, moveCargo } = useCaogoStore();
+    const { findCargo, moveCargo } = useCargoStore();
     const cargo = findCargo(nextPosition);
 
     if (cargo) {
