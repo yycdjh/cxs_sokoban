@@ -1,3 +1,4 @@
+import { useGameStore } from "../../store/game";
 import { usePlayerStore } from "../../store/player";
 
 export function useMove() {
@@ -7,6 +8,8 @@ export function useMove() {
     movePlayerToUp,
     movePlayerToDown,
   } = usePlayerStore();
+
+  const { detectionGameCompleted } = useGameStore();
 
   window.addEventListener("keyup", (e: KeyboardEvent) => {
     switch (e.code) {
@@ -25,5 +28,6 @@ export function useMove() {
       default:
         break;
     }
+    detectionGameCompleted();
   });
 }
