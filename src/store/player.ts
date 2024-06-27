@@ -6,8 +6,8 @@ import { useCargoStore } from "./cargo";
 export const usePlayerStore = defineStore("player", () => {
   const { isWall } = useMapStore();
   const player = reactive({
-    x: 1,
-    y: 1,
+    x: 0,
+    y: 0,
   });
 
   function _move(dx: number, dy: number) {

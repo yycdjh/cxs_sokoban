@@ -1,21 +1,16 @@
 import { defineStore } from "pinia";
 import { Position } from "../composables/usePosition";
+import { reactive } from "vue";
 
 export enum MapTile {
   WALL = 1,
   FLOOR = 2,
 }
 
-type Map = MapTile[][];
+export type Map = MapTile[][];
 
 export const useMapStore = defineStore("map", () => {
-  const map = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 2, 2, 2, 2, 2, 2, 1],
-    [1, 2, 2, 2, 2, 2, 2, 1],
-    [1, 2, 2, 2, 2, 2, 2, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-  ];
+  const map = reactive<Map>([]);
 
   function setupMap(newMap: Map) {
     map.splice(0, map.length, ...newMap);
