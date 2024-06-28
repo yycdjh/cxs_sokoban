@@ -42,11 +42,16 @@ export const useTargetStore = defineStore("target", () => {
 
     return true;
   }
+
+  function clearTarget() {
+    targets.splice(0, targets.length);
+  }
   return {
     targets,
     addTarget,
     createTarget,
     findTarget,
     moveTarget,
+    clearTarget,
   };
 });

@@ -8,8 +8,10 @@ export interface Cargo {
   x: number;
   y: number;
   onTarget: boolean;
+  id: number;
 }
 
+let Id = 1;
 export const useCargoStore = defineStore("cargo", () => {
   const cargos: Cargo[] = reactive([]);
 
@@ -18,6 +20,7 @@ export const useCargoStore = defineStore("cargo", () => {
       x,
       y,
       onTarget: false,
+      id: Id++,
     };
   }
   function addCargo(cargo: Cargo) {
@@ -52,11 +55,17 @@ export const useCargoStore = defineStore("cargo", () => {
     const { findTarget } = useTargetStore();
     cargo.onTarget = !!findTarget(cargo);
   }
+
+  function clearCargo() {
+    cargos.splice(0, cargos.length);
+  }
+
   return {
     cargos,
     addCargo,
     createCargo,
     findCargo,
     moveCargo,
+    clearCargo,
   };
 });
